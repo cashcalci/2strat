@@ -3,47 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Trading Strategy Checklist</title>
+<title>Gold Trading Strategy Checklist — Illustrated</title>
 <style>
-:root{--bg:#0b0f14;--card:#121821;--border:#263241;--text:#f4f7fb;--muted:#8f9baa;--gold:#d6a84f;--green:#35c98a}
+:root{
+  --bg:#080c12;--card:#111923;--card2:#0d141d;--border:#263442;
+  --text:#f4f7fb;--muted:#8e9aaa;--gold:#d6a84f;--green:#35c98a;--red:#ff5d67;
+  --blue:#4da3ff;--line:#3a4858;
+}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(135deg,#080b10,#101721);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
-.container{max-width:1000px;margin:auto;padding:28px 18px 45px}
-.header{text-align:center;margin-bottom:24px}
+body{
+  margin:0;background:radial-gradient(circle at top,#172230 0,#080c12 48%,#06090d 100%);
+  color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh
+}
+.container{max-width:1100px;margin:auto;padding:25px 16px 50px}
+.header{text-align:center;margin-bottom:20px}
 .header h1{margin:0;font-size:30px;letter-spacing:.5px}
 .header p{margin:7px 0 0;color:var(--muted);font-size:14px}
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.tab{border:1px solid var(--border);background:var(--card);color:var(--muted);padding:15px;border-radius:12px;font-weight:700;cursor:pointer;text-align:center;transition:.2s}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
+.tab{border:1px solid var(--border);background:var(--card);color:var(--muted);padding:14px;border-radius:12px;font-weight:800;cursor:pointer;text-align:center}
 .tab.active{background:var(--gold);border-color:var(--gold);color:#111}
 .panel{display:none}.panel.active{display:block}
-.card{background:rgba(18,24,33,.96);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
-.card h2{font-size:18px;margin:0 0 14px}
+.card{
+  background:rgba(17,25,35,.97);border:1px solid var(--border);border-radius:17px;
+  padding:18px;margin-bottom:18px;box-shadow:0 12px 35px rgba(0,0,0,.22)
+}
 .strategy-title{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.badge{font-size:11px;padding:5px 9px;border-radius:20px;background:#1b2530;color:var(--muted)}
-.check{display:flex;align-items:flex-start;gap:12px;padding:12px 10px;border-bottom:1px solid #202a36;cursor:pointer;line-height:1.45}
-.check:last-child{border-bottom:0}
+.card h2{font-size:18px;margin:0 0 15px}
+.badge{font-size:11px;padding:5px 9px;border-radius:20px;background:#1b2733;color:var(--muted)}
+.rule{
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:15px;
+  padding:14px 0;border-bottom:1px solid #202c38;align-items:center
+}
+.rule:last-of-type{border-bottom:0}
+.check{display:flex;align-items:flex-start;gap:12px;cursor:pointer;line-height:1.5}
 .check input{appearance:none;width:21px;height:21px;min-width:21px;border:2px solid #566474;border-radius:6px;margin:0;position:relative;cursor:pointer}
 .check input:checked{background:var(--green);border-color:var(--green)}
 .check input:checked:after{content:"✓";position:absolute;color:#07120d;font-weight:900;font-size:15px;left:3px;top:-1px}
-.check.done span{text-decoration:line-through;color:#71808f}
-.note{color:var(--muted);font-size:13px;margin:10px 0 0}
+.check.done .rule-text{text-decoration:line-through;color:#71808f}
+.rule-text b{color:#fff}
+.illustration{
+  background:#070b10;border:1px solid #283746;border-radius:12px;height:145px;
+  position:relative;overflow:hidden
+}
+.chart-title{position:absolute;top:7px;left:9px;font-size:9px;color:#718091;letter-spacing:.5px}
+.grid{
+  position:absolute;inset:24px 8px 8px;
+  background-image:linear-gradient(#17232e 1px,transparent 1px),linear-gradient(90deg,#17232e 1px,transparent 1px);
+  background-size:25% 25%;opacity:.65
+}
+.axis{position:absolute;left:8px;right:8px;bottom:8px;height:1px;background:#2b3947}
+.hline{position:absolute;left:8px;right:8px;height:1px;border-top:2px dashed var(--gold)}
+.hlabel{position:absolute;right:9px;font-size:8px;color:var(--gold);background:#070b10;padding:1px 3px}
+.vline{position:absolute;top:25px;bottom:8px;width:1px;border-left:2px dashed #667789}
+.arrow{position:absolute;font-weight:900;font-size:24px;line-height:1}
+.green{color:var(--green)}.red{color:var(--red)}.blue{color:var(--blue)}.gold{color:var(--gold)}
+.candle{position:absolute;width:7px;border-radius:1px}
+.candle:before{content:"";position:absolute;left:3px;width:1px;background:currentColor;top:-7px;height:calc(100% + 14px)}
+.up{background:var(--green);color:var(--green)}.down{background:var(--red);color:var(--red)}
+.ob{position:absolute;border:1px solid var(--blue);background:rgba(77,163,255,.13);border-radius:4px}
+.texttag{position:absolute;font-size:8px;font-weight:800;padding:2px 4px;border-radius:3px;background:#0b1118;border:1px solid #354454}
 .progress-wrap{margin-top:15px}
 .progress-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:7px}
 .progress{height:8px;background:#202a34;border-radius:20px;overflow:hidden}
 .bar{height:100%;width:0;background:var(--green);transition:.25s}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
 button{border:1px solid var(--border);background:#18212c;color:var(--text);padding:10px 15px;border-radius:9px;cursor:pointer;font-weight:700}
-button:hover{border-color:#566474}
 .reset{border-color:#6b2c33;color:#ff9298}
+.note{color:var(--muted);font-size:13px;margin:10px 0 0}
 .execution{border-left:4px solid var(--gold)}
-.execution .step{font-weight:800;color:var(--gold)}
+.execution .rule{grid-template-columns:minmax(0,1fr) 300px}
 .footer{text-align:center;color:#697583;font-size:12px;margin-top:22px}
-@media(max-width:600px){
-.container{padding:18px 12px 35px}
-.header h1{font-size:24px}
-.card{padding:15px}
-.tabs{grid-template-columns:1fr}
-.tab{padding:13px 8px;font-size:13px}
+@media(max-width:700px){
+  .container{padding:17px 11px 35px}.header h1{font-size:24px}.tabs{grid-template-columns:1fr}
+  .rule,.execution .rule{grid-template-columns:1fr}.illustration{height:150px}
 }
 </style>
 </head>
@@ -51,150 +83,174 @@ button:hover{border-color:#566474}
 <div class="container">
 
 <div class="header">
-<h1>GOLD TRADING CHECKLIST</h1>
-<p>5M Strategy • Daily Pre-Trade Discipline</p>
+  <h1>GOLD TRADING CHECKLIST</h1>
+  <p>5M XAUUSD Strategy • Illustrated Rules • Daily Pre-Trade Discipline</p>
 </div>
 
 <div class="tabs">
-<div class="tab active" onclick="showStrategy('asian',this)">ASIAN STRATEGY</div>
-<div class="tab" onclick="showStrategy('london',this)">LONDON STRATEGY</div>
-<div class="tab" onclick="showStrategy('ny-pm',this)">NY PM STRATEGY</div>
+  <div class="tab active" onclick="showStrategy('asian',this)">ASIAN STRATEGY</div>
+  <div class="tab" onclick="showStrategy('london',this)">LONDON STRATEGY</div>
+  <div class="tab" onclick="showStrategy('ny',this)">NY PM STRATEGY</div>
 </div>
 
+<!-- ASIAN -->
 <section id="asian" class="panel active">
 <div class="card">
 <div class="strategy-title"><h2>Asian Session Checklist</h2><span class="badge">ASIAN</span></div>
 
-<label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
-<label class="check"><input type="checkbox"><span>Mark <b>Asian High</b> and <b>Asian Low</b></span></label>
-<label class="check"><input type="checkbox"><span>Market breaks <b>Asian High</b> or <b>Asian Low</b></span></label>
-<label class="check"><input type="checkbox"><span>Choppy market → wait for <b>Order Block tap</b> and trade</span></label>
-<label class="check"><input type="checkbox"><span><b>Bullish or Bearish</b> → go direct trade</span></label>
-<label class="check"><input type="checkbox"><span>Based on the side, go for the corresponding <b>High or Low</b></span></label>
-<label class="check"><input type="checkbox"><span>Target: <b>50–100 PIPS</b> profit</span></label>
-<label class="check"><input type="checkbox"><span>Stop Loss: <b>200 PIPS</b></span></label>
-<label class="check"><input type="checkbox"><span>If market reverses, <b>exit the trade</b> and trade in the reversal direction only when the setup confirms it</span></label>
-
-<div class="progress-wrap">
-<div class="progress-top"><span>Asian Progress</span><span class="count">0 / 9</span></div>
-<div class="progress"><div class="bar"></div></div>
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Set time frame to <b>5 MIN</b></span></label>
+<div class="illustration"><span class="chart-title">TIMEFRAME • M5</span><div class="grid"></div><div class="texttag" style="left:12px;top:35px">5 MIN</div><div class="candle up" style="left:70px;top:73px;height:38px"></div><div class="candle down" style="left:100px;top:58px;height:53px"></div><div class="candle up" style="left:130px;top:45px;height:65px"></div><div class="candle down" style="left:160px;top:66px;height:44px"></div><div class="candle up" style="left:190px;top:52px;height:58px"></div></div>
 </div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Mark <b>Asian High</b> and <b>Asian Low</b></span></label>
+<div class="illustration"><span class="chart-title">ASIAN RANGE</span><div class="grid"></div><div class="hline" style="top:42px"></div><div class="hlabel" style="top:34px">ASIAN HIGH</div><div class="hline" style="top:112px"></div><div class="hlabel" style="top:104px">ASIAN LOW</div><div class="candle up" style="left:75px;top:65px;height:18px"></div><div class="candle down" style="left:105px;top:72px;height:20px"></div><div class="candle up" style="left:135px;top:57px;height:28px"></div><div class="candle down" style="left:165px;top:75px;height:18px"></div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Market breaks <b>Asian High</b> or <b>Asian Low</b></span></label>
+<div class="illustration"><span class="chart-title">BREAKOUT</span><div class="grid"></div><div class="hline" style="top:55px"></div><div class="hlabel" style="top:47px">ASIAN HIGH</div><div class="candle up" style="left:145px;top:65px;height:30px"></div><div class="candle up" style="left:170px;top:42px;height:30px"></div><div class="candle up" style="left:195px;top:28px;height:25px"></div><div class="arrow green" style="left:215px;top:32px">↗</div><div class="texttag" style="left:210px;top:70px">BREAK</div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Choppy market → wait for <b>Order Block tap</b> and trade</span></label>
+<div class="illustration"><span class="chart-title">CHOP → ORDER BLOCK</span><div class="grid"></div><div class="ob" style="left:175px;top:68px;width:70px;height:38px"></div><div class="texttag" style="left:181px;top:53px">ORDER BLOCK</div><div class="candle up" style="left:55px;top:60px;height:30px"></div><div class="candle down" style="left:78px;top:75px;height:25px"></div><div class="candle up" style="left:101px;top:65px;height:25px"></div><div class="candle down" style="left:124px;top:78px;height:22px"></div><div class="candle up" style="left:198px;top:73px;height:27px"></div><div class="arrow blue" style="left:223px;top:105px">↗</div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text"><b>Bullish or Bearish</b> → go direct trade</span></label>
+<div class="illustration"><span class="chart-title">DIRECTION</span><div class="grid"></div><div class="candle up" style="left:75px;top:72px;height:35px"></div><div class="candle up" style="left:100px;top:55px;height:45px"></div><div class="candle up" style="left:125px;top:40px;height:45px"></div><div class="arrow green" style="left:155px;top:36px">↗</div><div class="texttag" style="left:45px;top:112px">BULLISH</div><div class="candle down" style="left:225px;top:42px;height:45px"></div><div class="candle down" style="left:250px;top:57px;height:45px"></div><div class="arrow red" style="left:270px;top:82px">↘</div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Based on the side, go for the corresponding <b>High or Low</b></span></label>
+<div class="illustration"><span class="chart-title">LEVEL TARGET</span><div class="grid"></div><div class="hline" style="top:43px"></div><div class="hlabel" style="top:35px">HIGH</div><div class="hline" style="top:111px"></div><div class="hlabel" style="top:103px">LOW</div><div class="candle up" style="left:145px;top:72px;height:24px"></div><div class="arrow gold" style="left:170px;top:48px">↗</div><div class="arrow blue" style="left:172px;top:92px">↘</div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Target: <b>50–100 PIPS</b> profit</span></label>
+<div class="illustration"><span class="chart-title">TAKE PROFIT</span><div class="grid"></div><div class="hline" style="top:40px"></div><div class="hlabel" style="top:32px">TP</div><div class="candle up" style="left:85px;top:88px;height:22px"></div><div class="arrow green" style="left:110px;top:50px">↗</div><div class="texttag" style="left:142px;top:34px">+50–100 PIPS</div><div class="texttag" style="left:74px;top:113px">ENTRY</div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">Stop Loss: <b>200 PIPS</b></span></label>
+<div class="illustration"><span class="chart-title">STOP LOSS</span><div class="grid"></div><div class="hline" style="top:105px;border-color:var(--red)"></div><div class="hlabel" style="top:97px;color:var(--red)">SL • 200 PIPS</div><div class="candle down" style="left:135px;top:55px;height:28px"></div><div class="arrow red" style="left:158px;top:82px">↘</div><div class="texttag" style="left:105px;top:36px">ENTRY</div></div>
+</div>
+
+<div class="rule">
+<label class="check"><input type="checkbox"><span class="rule-text">If market reverses, <b>exit the trade</b> and trade in the reversal direction only when the setup confirms it</span></label>
+<div class="illustration"><span class="chart-title">REVERSAL</span><div class="grid"></div><div class="candle up" style="left:80px;top:70px;height:40px"></div><div class="candle up" style="left:105px;top:52px;height:48px"></div><div class="candle down" style="left:130px;top:43px;height:52px"></div><div class="candle down" style="left:155px;top:65px;height:45px"></div><div class="arrow red" style="left:180px;top:72px">↘</div><div class="texttag" style="left:112px;top:30px">REVERSAL</div></div>
+</div>
+
+<div class="progress-wrap"><div class="progress-top"><span>Asian Progress</span><span class="count">0 / 9</span></div><div class="progress"><div class="bar"></div></div></div>
 <div class="actions"><button class="reset" onclick="resetPanel('asian')">Reset Asian</button></div>
 </div>
 </section>
 
+<!-- LONDON -->
 <section id="london" class="panel">
 <div class="card">
 <div class="strategy-title"><h2>London Session Checklist</h2><span class="badge">LONDON</span></div>
 
-<label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
-<label class="check"><input type="checkbox"><span>Mark <b>London High</b> and <b>London Low</b></span></label>
-<label class="check"><input type="checkbox"><span>Market breaks <b>London High</b> or <b>London Low</b></span></label>
-<label class="check"><input type="checkbox"><span>If market breaks <b>HIGH</b> → <b>SELL</b> only if a <b>RED candle closes below the High line</b></span></label>
-<label class="check"><input type="checkbox"><span>If market breaks <b>LOW</b> → <b>BUY</b> only if a <b>GREEN candle closes above the Low line</b></span></label>
-<label class="check"><input type="checkbox"><span>If there is no pullback and price only touches the High/Low for a <b>liquidity sweep</b> → trade BUY/SELL based on the confirmed position/setup</span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Set time frame to <b>5 MIN</b></span></label><div class="illustration"><span class="chart-title">M5</span><div class="grid"></div><div class="texttag" style="left:18px;top:40px">5 MIN</div><div class="candle up" style="left:95px;top:58px;height:48px"></div><div class="candle down" style="left:125px;top:70px;height:36px"></div><div class="candle up" style="left:155px;top:48px;height:58px"></div><div class="candle down" style="left:185px;top:61px;height:45px"></div></div></div>
 
-<div class="progress-wrap">
-<div class="progress-top"><span>London Progress</span><span class="count">0 / 6</span></div>
-<div class="progress"><div class="bar"></div></div>
-</div>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Mark <b>London High</b> and <b>London Low</b></span></label><div class="illustration"><span class="chart-title">LONDON RANGE</span><div class="grid"></div><div class="hline" style="top:40px"></div><div class="hlabel" style="top:32px">LONDON HIGH</div><div class="hline" style="top:112px"></div><div class="hlabel" style="top:104px">LONDON LOW</div><div class="candle up" style="left:90px;top:67px;height:25px"></div><div class="candle down" style="left:120px;top:78px;height:20px"></div><div class="candle up" style="left:150px;top:60px;height:30px"></div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Market breaks <b>London High</b> or <b>London Low</b></span></label><div class="illustration"><span class="chart-title">BREAK</span><div class="grid"></div><div class="hline" style="top:50px"></div><div class="hlabel" style="top:42px">HIGH</div><div class="candle up" style="left:130px;top:62px;height:30px"></div><div class="candle up" style="left:155px;top:42px;height:27px"></div><div class="arrow green" style="left:180px;top:30px">↗</div><div class="texttag" style="left:184px;top:64px">BREAK</div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">If market breaks <b>HIGH</b> → <b>SELL</b> only if a <b>RED candle closes below the High line</b></span></label><div class="illustration"><span class="chart-title">HIGH BREAK → SELL</span><div class="grid"></div><div class="hline" style="top:53px"></div><div class="hlabel" style="top:45px">HIGH</div><div class="candle up" style="left:105px;top:58px;height:24px"></div><div class="candle down" style="left:132px;top:47px;height:50px"></div><div class="arrow red" style="left:160px;top:88px">↘</div><div class="texttag" style="left:181px;top:88px">SELL</div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">If market breaks <b>LOW</b> → <b>BUY</b> only if a <b>GREEN candle closes above the Low line</b></span></label><div class="illustration"><span class="chart-title">LOW BREAK → BUY</span><div class="grid"></div><div class="hline" style="top:104px"></div><div class="hlabel" style="top:96px">LOW</div><div class="candle down" style="left:105px;top:72px;height:32px"></div><div class="candle up" style="left:132px;top:52px;height:52px"></div><div class="arrow green" style="left:160px;top:35px">↗</div><div class="texttag" style="left:183px;top:35px">BUY</div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">If there is no pullback and price only touches the High/Low for a <b>liquidity sweep</b> → trade only on confirmed setup</span></label><div class="illustration"><span class="chart-title">LIQUIDITY SWEEP</span><div class="grid"></div><div class="hline" style="top:45px"></div><div class="hlabel" style="top:37px">HIGH</div><div class="candle up" style="left:125px;top:48px;height:40px"></div><div class="candle down" style="left:150px;top:42px;height:50px"></div><div class="arrow red" style="left:177px;top:82px">↘</div><div class="texttag" style="left:191px;top:100px">SWEEP</div></div></div>
+
+<div class="progress-wrap"><div class="progress-top"><span>London Progress</span><span class="count">0 / 6</span></div><div class="progress"><div class="bar"></div></div></div>
 <div class="actions"><button class="reset" onclick="resetPanel('london')">Reset London</button></div>
 </div>
 </section>
 
-<section id="ny-pm" class="panel">
+<!-- NY PM -->
+<section id="ny" class="panel">
 <div class="card">
 <div class="strategy-title"><h2>NY PM Session Checklist</h2><span class="badge">NY PM</span></div>
 
-<label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Set time frame to <b>5 MIN</b></span></label><div class="illustration"><span class="chart-title">NY PM • M5</span><div class="grid"></div><div class="texttag" style="left:18px;top:40px">5 MIN</div><div class="candle down" style="left:90px;top:52px;height:54px"></div><div class="candle up" style="left:120px;top:64px;height:42px"></div><div class="candle down" style="left:150px;top:44px;height:62px"></div><div class="candle up" style="left:180px;top:55px;height:51px"></div></div></div>
 
-<label class="check"><input type="checkbox"><span><b>IST 1:00 AM to 2:20 AM</b> — if in UAE, <b>11:30 PM to 12:50 AM</b> — mark <b>NY PM High & Low</b></span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><b>IST 1:00 AM–2:20 AM</b> — UAE <b>11:30 PM–12:50 AM</b> — mark NY PM High & Low</span></label><div class="illustration"><span class="chart-title">NY PM TIME WINDOW</span><div class="grid"></div><div class="vline" style="left:75px"></div><div class="vline" style="left:235px"></div><div class="texttag" style="left:82px;top:35px">IST 1:00 AM</div><div class="texttag" style="left:160px;top:90px">IST 2:20 AM</div><div class="hline" style="top:52px"></div><div class="hline" style="top:105px"></div><div class="hlabel" style="top:44px">HIGH</div><div class="hlabel" style="top:97px">LOW</div></div></div>
 
-<label class="check"><input type="checkbox"><span>Mark <b>NY PM High</b> and <b>NY PM Low</b></span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Mark <b>NY PM High</b> and <b>NY PM Low</b></span></label><div class="illustration"><span class="chart-title">NY PM RANGE</span><div class="grid"></div><div class="hline" style="top:43px"></div><div class="hlabel" style="top:35px">NY PM HIGH</div><div class="hline" style="top:111px"></div><div class="hlabel" style="top:103px">NY PM LOW</div><div class="candle up" style="left:95px;top:66px;height:26px"></div><div class="candle down" style="left:125px;top:76px;height:20px"></div><div class="candle up" style="left:155px;top:58px;height:34px"></div></div></div>
 
-<label class="check"><input type="checkbox"><span>Upon break of <b>NY PM High or Low</b> → go for the trade in the corresponding <b>BUY or SELL</b> direction</span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Upon break of <b>NY PM High or Low</b> → go for trade in corresponding <b>BUY or SELL</b> direction</span></label><div class="illustration"><span class="chart-title">NY PM BREAK</span><div class="grid"></div><div class="hline" style="top:52px"></div><div class="hlabel" style="top:44px">HIGH</div><div class="candle up" style="left:125px;top:62px;height:30px"></div><div class="candle up" style="left:150px;top:35px;height:35px"></div><div class="arrow green" style="left:175px;top:27px">↗</div><div class="texttag" style="left:196px;top:32px">BUY</div></div></div>
 
-<label class="check"><input type="checkbox"><span>Enter only upon a <b>strong GREEN candle for BUY</b> or <b>strong RED candle for SELL</b></span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Enter only upon a <b>strong GREEN candle for BUY</b> or <b>strong RED candle for SELL</b></span></label><div class="illustration"><span class="chart-title">STRONG CONFIRMATION CANDLE</span><div class="grid"></div><div class="candle up" style="left:110px;top:38px;height:67px"></div><div class="arrow green" style="left:132px;top:22px">↗</div><div class="texttag" style="left:151px;top:48px">BUY</div><div class="candle down" style="left:220px;top:42px;height:63px"></div><div class="arrow red" style="left:240px;top:92px">↘</div><div class="texttag" style="left:258px;top:96px">SELL</div></div></div>
 
-<label class="check"><input type="checkbox"><span>Stop Loss is placed at the <b>NY PM High or NY PM Low</b> based on trade direction</span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Stop Loss is <b>NY PM High or Low</b> based on trade direction</span></label><div class="illustration"><span class="chart-title">SL AT RANGE EXTREME</span><div class="grid"></div><div class="hline" style="top:43px;border-color:var(--red)"></div><div class="hlabel" style="top:35px;color:var(--red)">SL • HIGH</div><div class="hline" style="top:111px;border-color:var(--red)"></div><div class="hlabel" style="top:103px;color:var(--red)">SL • LOW</div><div class="candle down" style="left:150px;top:67px;height:25px"></div><div class="texttag" style="left:168px;top:67px">ENTRY</div></div></div>
 
-<label class="check"><input type="checkbox"><span>Take Profit: <b>minimum 100 PIPS</b></span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text">Take Profit: <b>minimum 100 PIPS</b></span></label><div class="illustration"><span class="chart-title">NY PM TAKE PROFIT</span><div class="grid"></div><div class="hline" style="top:35px"></div><div class="hlabel" style="top:27px">TP</div><div class="candle up" style="left:90px;top:92px;height:18px"></div><div class="candle up" style="left:118px;top:74px;height:28px"></div><div class="candle up" style="left:146px;top:55px;height:34px"></div><div class="arrow green" style="left:173px;top:30px">↗</div><div class="texttag" style="left:190px;top:30px">100+ PIPS</div></div></div>
 
-<p class="note">NY PM rules are checklist conditions, not a guarantee of a profitable trade. Confirm the setup and manage position size before entering.</p>
-
-<div class="progress-wrap">
-<div class="progress-top"><span>NY PM Progress</span><span class="count">0 / 7</span></div>
-<div class="progress"><div class="bar"></div></div>
-</div>
-<div class="actions"><button class="reset" onclick="resetPanel('ny-pm')">Reset NY PM</button></div>
+<div class="progress-wrap"><div class="progress-top"><span>NY PM Progress</span><span class="count">0 / 7</span></div><div class="progress"><div class="bar"></div></div></div>
+<div class="actions"><button class="reset" onclick="resetPanel('ny')">Reset NY PM</button></div>
 </div>
 </section>
 
+<!-- EXECUTION -->
 <div class="card execution">
 <div class="strategy-title"><h2>BOS / CHOCH → ORDER BLOCK → EXECUTION</h2><span class="badge">CONFIRMATION</span></div>
 
-<label class="check"><input type="checkbox"><span><span class="step">1.</span> Once Asian Market High & Low are set, check for <b>BOS or CHOCH</b></span></label>
-<label class="check"><input type="checkbox"><span><span class="step">2.</span> Identify and mark the <b>Order Block</b> on <b>15 MIN</b></span></label>
-<label class="check"><input type="checkbox"><span><span class="step">3.</span> Confirm the Order Block on <b>5 MIN</b></span></label>
-<label class="check"><input type="checkbox"><span><span class="step">4.</span> Refine the Order Block on <b>3 MIN</b></span></label>
-<label class="check"><input type="checkbox"><span><span class="step">5.</span> Execute on <b>1 MIN TF</b> when the setup confirms</span></label>
-<label class="check"><input type="checkbox"><span><span class="step">6.</span> If 1 MIN execution is unavailable, use <b>5 MIN candle closure</b> based on the Order Block BUY/SELL setup</span></label>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><span style="color:var(--gold);font-weight:800">1.</span> Once Asian Market High & Low are set, check for <b>BOS or CHOCH</b></span></label><div class="illustration"><span class="chart-title">BOS / CHOCH</span><div class="grid"></div><div class="candle down" style="left:85px;top:48px;height:45px"></div><div class="candle down" style="left:112px;top:67px;height:39px"></div><div class="candle up" style="left:139px;top:45px;height:55px"></div><div class="candle up" style="left:166px;top:29px;height:62px"></div><div class="arrow green" style="left:190px;top:23px">↗</div><div class="texttag" style="left:205px;top:50px">BOS</div></div></div>
 
-<p class="note">Use this section as the final confirmation before entering a trade. A checklist confirmation does not guarantee a profitable trade.</p>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><span style="color:var(--gold);font-weight:800">2.</span> Identify and mark the <b>Order Block</b> on <b>15 MIN</b></span></label><div class="illustration"><span class="chart-title">15M ORDER BLOCK</span><div class="grid"></div><div class="ob" style="left:95px;top:65px;width:105px;height:35px"></div><div class="texttag" style="left:110px;top:48px">15M OB</div><div class="candle down" style="left:75px;top:55px;height:45px"></div><div class="candle up" style="left:110px;top:40px;height:55px"></div><div class="candle up" style="left:140px;top:29px;height:55px"></div><div class="arrow blue" style="left:195px;top:73px">↗</div></div></div>
 
-<div class="progress-wrap">
-<div class="progress-top"><span>Execution Progress</span><span class="count">0 / 6</span></div>
-<div class="progress"><div class="bar"></div></div>
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><span style="color:var(--gold);font-weight:800">3.</span> Confirm the Order Block on <b>5 MIN</b></span></label><div class="illustration"><span class="chart-title">5M CONFIRMATION</span><div class="grid"></div><div class="ob" style="left:115px;top:63px;width:80px;height:38px"></div><div class="candle down" style="left:80px;top:47px;height:47px"></div><div class="candle up" style="left:115px;top:70px;height:32px"></div><div class="candle up" style="left:145px;top:45px;height:52px"></div><div class="arrow green" style="left:173px;top:28px">↗</div><div class="texttag" style="left:187px;top:52px">CONFIRM</div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><span style="color:var(--gold);font-weight:800">4.</span> Refine the Order Block on <b>3 MIN</b></span></label><div class="illustration"><span class="chart-title">3M REFINEMENT</span><div class="grid"></div><div class="ob" style="left:125px;top:72px;width:50px;height:24px"></div><div class="texttag" style="left:126px;top:54px">REFINED OB</div><div class="candle down" style="left:92px;top:56px;height:42px"></div><div class="candle up" style="left:125px;top:70px;height:27px"></div><div class="candle up" style="left:150px;top:45px;height:50px"></div><div class="arrow blue" style="left:177px;top:31px">↗</div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><span style="color:var(--gold);font-weight:800">5.</span> Execute on <b>1 MIN TF</b> when the setup confirms</span></label><div class="illustration"><span class="chart-title">1M EXECUTION</span><div class="grid"></div><div class="ob" style="left:120px;top:72px;width:45px;height:24px"></div><div class="candle down" style="left:90px;top:50px;height:45px"></div><div class="candle up" style="left:122px;top:67px;height:30px"></div><div class="candle up" style="left:147px;top:45px;height:52px"></div><div class="arrow green" style="left:174px;top:27px">↗</div><div class="texttag" style="left:188px;top:52px">ENTRY</div></div></div>
+
+<div class="rule"><label class="check"><input type="checkbox"><span class="rule-text"><span style="color:var(--gold);font-weight:800">6.</span> If 1 MIN execution is unavailable, use <b>5 MIN candle closure</b> based on the Order Block BUY/SELL setup</span></label><div class="illustration"><span class="chart-title">M5 CLOSE ENTRY</span><div class="grid"></div><div class="ob" style="left:115px;top:64px;width:70px;height:32px"></div><div class="candle up" style="left:85px;top:67px;height:35px"></div><div class="candle up" style="left:118px;top:45px;height:50px"></div><div class="candle up" style="left:151px;top:30px;height:62px"></div><div class="texttag" style="left:188px;top:49px">5M CLOSE</div></div></div>
+
+<p class="note">Illustrations are visual examples of the checklist rules, not predictions. A checklist confirmation does not guarantee a profitable trade.</p>
+<div class="progress-wrap"><div class="progress-top"><span>Execution Progress</span><span class="count">0 / 6</span></div><div class="progress"><div class="bar"></div></div></div>
+<div class="actions"><button class="reset" onclick="resetPanel('execution')">Reset Execution</button><button onclick="resetAll()">Reset All</button></div>
 </div>
 
-<div class="actions">
-<button class="reset" onclick="resetPanel('execution')">Reset Execution</button>
-<button onclick="resetAll()">Reset All</button>
-</div>
-</div>
-
-<div class="footer">GOLD • XAUUSD • DAILY CHECKLIST</div>
+<div class="footer">GOLD • XAUUSD • ILLUSTRATED DAILY CHECKLIST</div>
 </div>
 
 <script>
 function updateCard(card){
-const checks=[...card.querySelectorAll('input[type=checkbox]')];
-const done=checks.filter(x=>x.checked).length;
-const count=card.querySelector('.count');
-const bar=card.querySelector('.bar');
-
-if(count) count.textContent=done+' / '+checks.length;
-if(bar) bar.style.width=(done/checks.length*100)+'%';
-
-checks.forEach(x=>{
-x.closest('.check').classList.toggle('done',x.checked);
-});
+  const checks=[...card.querySelectorAll('input[type=checkbox]')];
+  const done=checks.filter(x=>x.checked).length;
+  const count=card.querySelector('.count');
+  const bar=card.querySelector('.bar');
+  if(count) count.textContent=done+' / '+checks.length;
+  if(bar) bar.style.width=(done/checks.length*100)+'%';
+  checks.forEach(x=>{
+    const label=x.closest('.check');
+    if(label) label.classList.toggle('done',x.checked);
+  });
 }
-
 document.querySelectorAll('.card').forEach(card=>{
-card.querySelectorAll('input[type=checkbox]').forEach(cb=>{
-cb.addEventListener('change',()=>updateCard(card));
+  card.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change',()=>updateCard(card));
+  });
+  updateCard(card);
 });
-updateCard(card);
-});
-
 function showStrategy(id,el){
-document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-el.classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
 }
-
 function resetPanel(id){
-let root=document.getElementById(id);
-if(id==='execution') root=document.querySelector('.execution');
-root.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
-updateCard(root);
+  const root=id==='execution'?document.querySelector('.execution'):document.getElementById(id);
+  root.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
+  updateCard(root);
 }
-
 function resetAll(){
-document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
-document.querySelectorAll('.card').forEach(updateCard);
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
+  document.querySelectorAll('.card').forEach(updateCard);
 }
 </script>
 </body>
