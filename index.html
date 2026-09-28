@@ -5,33 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gold Trading Strategy Checklist</title>
 <style>
-:root{
-  --bg:#0b0f14;--card:#121821;--card2:#0f151d;--border:#263241;
-  --text:#f4f7fb;--muted:#8f9baa;--gold:#d6a84f;--green:#35c98a;--red:#ff5d67;
-}
+:root{--bg:#0b0f14;--card:#121821;--border:#263241;--text:#f4f7fb;--muted:#8f9baa;--gold:#d6a84f;--green:#35c98a}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(135deg,#080b10,#101721);color:var(--text);
-font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
+body{margin:0;background:linear-gradient(135deg,#080b10,#101721);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
 .container{max-width:1000px;margin:auto;padding:28px 18px 45px}
 .header{text-align:center;margin-bottom:24px}
 .header h1{margin:0;font-size:30px;letter-spacing:.5px}
 .header p{margin:7px 0 0;color:var(--muted);font-size:14px}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
-.tab{border:1px solid var(--border);background:var(--card);color:var(--muted);padding:15px;
-border-radius:12px;font-weight:700;cursor:pointer;text-align:center;transition:.2s}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.tab{border:1px solid var(--border);background:var(--card);color:var(--muted);padding:15px;border-radius:12px;font-weight:700;cursor:pointer;text-align:center;transition:.2s}
 .tab.active{background:var(--gold);border-color:var(--gold);color:#111}
-.panel{display:none}
-.panel.active{display:block}
-.card{background:rgba(18,24,33,.96);border:1px solid var(--border);border-radius:16px;padding:20px;
-margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.panel{display:none}.panel.active{display:block}
+.card{background:rgba(18,24,33,.96);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
 .card h2{font-size:18px;margin:0 0 14px}
 .strategy-title{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .badge{font-size:11px;padding:5px 9px;border-radius:20px;background:#1b2530;color:var(--muted)}
-.check{display:flex;align-items:flex-start;gap:12px;padding:12px 10px;border-bottom:1px solid #202a36;
-cursor:pointer;line-height:1.45}
+.check{display:flex;align-items:flex-start;gap:12px;padding:12px 10px;border-bottom:1px solid #202a36;cursor:pointer;line-height:1.45}
 .check:last-child{border-bottom:0}
-.check input{appearance:none;width:21px;height:21px;min-width:21px;border:2px solid #566474;border-radius:6px;
-margin:0;position:relative;cursor:pointer}
+.check input{appearance:none;width:21px;height:21px;min-width:21px;border:2px solid #566474;border-radius:6px;margin:0;position:relative;cursor:pointer}
 .check input:checked{background:var(--green);border-color:var(--green)}
 .check input:checked:after{content:"✓";position:absolute;color:#07120d;font-weight:900;font-size:15px;left:3px;top:-1px}
 .check.done span{text-decoration:line-through;color:#71808f}
@@ -41,106 +32,169 @@ margin:0;position:relative;cursor:pointer}
 .progress{height:8px;background:#202a34;border-radius:20px;overflow:hidden}
 .bar{height:100%;width:0;background:var(--green);transition:.25s}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-button{border:1px solid var(--border);background:#18212c;color:var(--text);padding:10px 15px;border-radius:9px;
-cursor:pointer;font-weight:700}
+button{border:1px solid var(--border);background:#18212c;color:var(--text);padding:10px 15px;border-radius:9px;cursor:pointer;font-weight:700}
 button:hover{border-color:#566474}
 .reset{border-color:#6b2c33;color:#ff9298}
 .execution{border-left:4px solid var(--gold)}
 .execution .step{font-weight:800;color:var(--gold)}
 .footer{text-align:center;color:#697583;font-size:12px;margin-top:22px}
 @media(max-width:600px){
-.container{padding:18px 12px 35px}.header h1{font-size:24px}.card{padding:15px}.tab{padding:13px 8px;font-size:13px}
+.container{padding:18px 12px 35px}
+.header h1{font-size:24px}
+.card{padding:15px}
+.tabs{grid-template-columns:1fr}
+.tab{padding:13px 8px;font-size:13px}
 }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>GOLD TRADING CHECKLIST</h1>
-    <p>5M Strategy • Daily Pre-Trade Discipline</p>
-  </div>
 
-  <div class="tabs">
-    <div class="tab active" onclick="showStrategy('asian',this)">ASIAN STRATEGY</div>
-    <div class="tab" onclick="showStrategy('london',this)">LONDON STRATEGY</div>
-  </div>
+<div class="header">
+<h1>GOLD TRADING CHECKLIST</h1>
+<p>5M Strategy • Daily Pre-Trade Discipline</p>
+</div>
 
-  <section id="asian" class="panel active">
-    <div class="card">
-      <div class="strategy-title"><h2>Asian Session Checklist</h2><span class="badge">ASIAN</span></div>
-      <label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
-      <label class="check"><input type="checkbox"><span>Mark <b>Asian High</b> and <b>Asian Low</b></span></label>
-      <label class="check"><input type="checkbox"><span>Market breaks <b>Asian High</b> or <b>Asian Low</b></span></label>
-      <label class="check"><input type="checkbox"><span>Choppy market → wait for <b>Order Block tap</b> and trade</span></label>
-      <label class="check"><input type="checkbox"><span><b>Bullish or Bearish</b> → go direct trade</span></label>
-      <label class="check"><input type="checkbox"><span>Based on the side, go for the corresponding <b>High or Low</b></span></label>
-      <label class="check"><input type="checkbox"><span>Target: <b>50–100 PIPS</b> profit</span></label>
-      <label class="check"><input type="checkbox"><span>Stop Loss: <b>200 PIPS</b></span></label>
-      <label class="check"><input type="checkbox"><span>If market reverses, <b>exit the trade</b> and trade in the reversal direction only when the setup confirms it</span></label>
-      <div class="progress-wrap"><div class="progress-top"><span>Asian Progress</span><span class="count">0 / 9</span></div><div class="progress"><div class="bar"></div></div></div>
-      <div class="actions"><button class="reset" onclick="resetPanel('asian')">Reset Asian</button></div>
-    </div>
-  </section>
+<div class="tabs">
+<div class="tab active" onclick="showStrategy('asian',this)">ASIAN STRATEGY</div>
+<div class="tab" onclick="showStrategy('london',this)">LONDON STRATEGY</div>
+<div class="tab" onclick="showStrategy('ny-pm',this)">NY PM STRATEGY</div>
+</div>
 
-  <section id="london" class="panel">
-    <div class="card">
-      <div class="strategy-title"><h2>London Session Checklist</h2><span class="badge">LONDON</span></div>
-      <label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
-      <label class="check"><input type="checkbox"><span>Mark <b>London High</b> and <b>London Low</b></span></label>
-      <label class="check"><input type="checkbox"><span>Market breaks <b>London High</b> or <b>London Low</b></span></label>
-      <label class="check"><input type="checkbox"><span>If market breaks <b>HIGH</b> → <b>SELL</b> only if a <b>RED candle closes below the High line</b></span></label>
-      <label class="check"><input type="checkbox"><span>If market breaks <b>LOW</b> → <b>BUY</b> only if a <b>GREEN candle closes above the Low line</b></span></label>
-      <label class="check"><input type="checkbox"><span>If there is no pullback and price only touches the High/Low for a <b>liquidity sweep</b> → trade BUY/SELL based on the confirmed position/setup</span></label>
-      <div class="progress-wrap"><div class="progress-top"><span>London Progress</span><span class="count">0 / 6</span></div><div class="progress"><div class="bar"></div></div></div>
-      <div class="actions"><button class="reset" onclick="resetPanel('london')">Reset London</button></div>
-    </div>
-  </section>
+<section id="asian" class="panel active">
+<div class="card">
+<div class="strategy-title"><h2>Asian Session Checklist</h2><span class="badge">ASIAN</span></div>
 
-  <div class="card execution">
-    <div class="strategy-title"><h2>BOS / CHOCH → ORDER BLOCK → EXECUTION</h2><span class="badge">CONFIRMATION</span></div>
-    <label class="check"><input type="checkbox"><span><span class="step">1.</span> Once Asian Market High & Low are set, check for <b>BOS or CHOCH</b></span></label>
-    <label class="check"><input type="checkbox"><span><span class="step">2.</span> Identify and mark the <b>Order Block</b> on <b>15 MIN</b></span></label>
-    <label class="check"><input type="checkbox"><span><span class="step">3.</span> Confirm the Order Block on <b>5 MIN</b></span></label>
-    <label class="check"><input type="checkbox"><span><span class="step">4.</span> Refine the Order Block on <b>3 MIN</b></span></label>
-    <label class="check"><input type="checkbox"><span><span class="step">5.</span> Execute on <b>1 MIN TF</b> when the setup confirms</span></label>
-    <label class="check"><input type="checkbox"><span><span class="step">6.</span> If 1 MIN execution is unavailable, use <b>5 MIN candle closure</b> based on the Order Block BUY/SELL setup</span></label>
-    <p class="note">Use this section as the final confirmation before entering a trade. A checklist confirmation does not guarantee a profitable trade.</p>
-    <div class="progress-wrap"><div class="progress-top"><span>Execution Progress</span><span class="count">0 / 6</span></div><div class="progress"><div class="bar"></div></div></div>
-    <div class="actions"><button class="reset" onclick="resetPanel('execution')">Reset Execution</button><button onclick="resetAll()">Reset All</button></div>
-  </div>
+<label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
+<label class="check"><input type="checkbox"><span>Mark <b>Asian High</b> and <b>Asian Low</b></span></label>
+<label class="check"><input type="checkbox"><span>Market breaks <b>Asian High</b> or <b>Asian Low</b></span></label>
+<label class="check"><input type="checkbox"><span>Choppy market → wait for <b>Order Block tap</b> and trade</span></label>
+<label class="check"><input type="checkbox"><span><b>Bullish or Bearish</b> → go direct trade</span></label>
+<label class="check"><input type="checkbox"><span>Based on the side, go for the corresponding <b>High or Low</b></span></label>
+<label class="check"><input type="checkbox"><span>Target: <b>50–100 PIPS</b> profit</span></label>
+<label class="check"><input type="checkbox"><span>Stop Loss: <b>200 PIPS</b></span></label>
+<label class="check"><input type="checkbox"><span>If market reverses, <b>exit the trade</b> and trade in the reversal direction only when the setup confirms it</span></label>
 
-  <div class="footer">GOLD • XAUUSD • DAILY CHECKLIST</div>
+<div class="progress-wrap">
+<div class="progress-top"><span>Asian Progress</span><span class="count">0 / 9</span></div>
+<div class="progress"><div class="bar"></div></div>
+</div>
+<div class="actions"><button class="reset" onclick="resetPanel('asian')">Reset Asian</button></div>
+</div>
+</section>
+
+<section id="london" class="panel">
+<div class="card">
+<div class="strategy-title"><h2>London Session Checklist</h2><span class="badge">LONDON</span></div>
+
+<label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
+<label class="check"><input type="checkbox"><span>Mark <b>London High</b> and <b>London Low</b></span></label>
+<label class="check"><input type="checkbox"><span>Market breaks <b>London High</b> or <b>London Low</b></span></label>
+<label class="check"><input type="checkbox"><span>If market breaks <b>HIGH</b> → <b>SELL</b> only if a <b>RED candle closes below the High line</b></span></label>
+<label class="check"><input type="checkbox"><span>If market breaks <b>LOW</b> → <b>BUY</b> only if a <b>GREEN candle closes above the Low line</b></span></label>
+<label class="check"><input type="checkbox"><span>If there is no pullback and price only touches the High/Low for a <b>liquidity sweep</b> → trade BUY/SELL based on the confirmed position/setup</span></label>
+
+<div class="progress-wrap">
+<div class="progress-top"><span>London Progress</span><span class="count">0 / 6</span></div>
+<div class="progress"><div class="bar"></div></div>
+</div>
+<div class="actions"><button class="reset" onclick="resetPanel('london')">Reset London</button></div>
+</div>
+</section>
+
+<section id="ny-pm" class="panel">
+<div class="card">
+<div class="strategy-title"><h2>NY PM Session Checklist</h2><span class="badge">NY PM</span></div>
+
+<label class="check"><input type="checkbox"><span>Set time frame to <b>5 MIN</b></span></label>
+
+<label class="check"><input type="checkbox"><span><b>IST 1:00 AM to 2:20 AM</b> — if in UAE, <b>11:30 PM to 12:50 AM</b> — mark <b>NY PM High & Low</b></span></label>
+
+<label class="check"><input type="checkbox"><span>Mark <b>NY PM High</b> and <b>NY PM Low</b></span></label>
+
+<label class="check"><input type="checkbox"><span>Upon break of <b>NY PM High or Low</b> → go for the trade in the corresponding <b>BUY or SELL</b> direction</span></label>
+
+<label class="check"><input type="checkbox"><span>Enter only upon a <b>strong GREEN candle for BUY</b> or <b>strong RED candle for SELL</b></span></label>
+
+<label class="check"><input type="checkbox"><span>Stop Loss is placed at the <b>NY PM High or NY PM Low</b> based on trade direction</span></label>
+
+<label class="check"><input type="checkbox"><span>Take Profit: <b>minimum 100 PIPS</b></span></label>
+
+<p class="note">NY PM rules are checklist conditions, not a guarantee of a profitable trade. Confirm the setup and manage position size before entering.</p>
+
+<div class="progress-wrap">
+<div class="progress-top"><span>NY PM Progress</span><span class="count">0 / 7</span></div>
+<div class="progress"><div class="bar"></div></div>
+</div>
+<div class="actions"><button class="reset" onclick="resetPanel('ny-pm')">Reset NY PM</button></div>
+</div>
+</section>
+
+<div class="card execution">
+<div class="strategy-title"><h2>BOS / CHOCH → ORDER BLOCK → EXECUTION</h2><span class="badge">CONFIRMATION</span></div>
+
+<label class="check"><input type="checkbox"><span><span class="step">1.</span> Once Asian Market High & Low are set, check for <b>BOS or CHOCH</b></span></label>
+<label class="check"><input type="checkbox"><span><span class="step">2.</span> Identify and mark the <b>Order Block</b> on <b>15 MIN</b></span></label>
+<label class="check"><input type="checkbox"><span><span class="step">3.</span> Confirm the Order Block on <b>5 MIN</b></span></label>
+<label class="check"><input type="checkbox"><span><span class="step">4.</span> Refine the Order Block on <b>3 MIN</b></span></label>
+<label class="check"><input type="checkbox"><span><span class="step">5.</span> Execute on <b>1 MIN TF</b> when the setup confirms</span></label>
+<label class="check"><input type="checkbox"><span><span class="step">6.</span> If 1 MIN execution is unavailable, use <b>5 MIN candle closure</b> based on the Order Block BUY/SELL setup</span></label>
+
+<p class="note">Use this section as the final confirmation before entering a trade. A checklist confirmation does not guarantee a profitable trade.</p>
+
+<div class="progress-wrap">
+<div class="progress-top"><span>Execution Progress</span><span class="count">0 / 6</span></div>
+<div class="progress"><div class="bar"></div></div>
+</div>
+
+<div class="actions">
+<button class="reset" onclick="resetPanel('execution')">Reset Execution</button>
+<button onclick="resetAll()">Reset All</button>
+</div>
+</div>
+
+<div class="footer">GOLD • XAUUSD • DAILY CHECKLIST</div>
 </div>
 
 <script>
 function updateCard(card){
-  const checks=[...card.querySelectorAll('input[type=checkbox]')];
-  const done=checks.filter(x=>x.checked).length;
-  const count=card.querySelector('.count');
-  const bar=card.querySelector('.bar');
-  if(count) count.textContent=done+' / '+checks.length;
-  if(bar) bar.style.width=(done/checks.length*100)+'%';
-  checks.forEach(x=>x.closest('.check').classList.toggle('done',x.checked));
-}
-document.querySelectorAll('.card').forEach(card=>{
-  card.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.addEventListener('change',()=>updateCard(card)));
-  updateCard(card);
+const checks=[...card.querySelectorAll('input[type=checkbox]')];
+const done=checks.filter(x=>x.checked).length;
+const count=card.querySelector('.count');
+const bar=card.querySelector('.bar');
+
+if(count) count.textContent=done+' / '+checks.length;
+if(bar) bar.style.width=(done/checks.length*100)+'%';
+
+checks.forEach(x=>{
+x.closest('.check').classList.toggle('done',x.checked);
 });
+}
+
+document.querySelectorAll('.card').forEach(card=>{
+card.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+cb.addEventListener('change',()=>updateCard(card));
+});
+updateCard(card);
+});
+
 function showStrategy(id,el){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+el.classList.add('active');
 }
+
 function resetPanel(id){
-  let root=document.getElementById(id);
-  if(id==='execution') root=document.querySelector('.execution');
-  root.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
-  updateCard(root);
+let root=document.getElementById(id);
+if(id==='execution') root=document.querySelector('.execution');
+root.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
+updateCard(root);
 }
+
 function resetAll(){
-  document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
-  document.querySelectorAll('.card').forEach(updateCard);
+document.querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);
+document.querySelectorAll('.card').forEach(updateCard);
 }
 </script>
 </body>
